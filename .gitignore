@@ -1,0 +1,5 @@
+.venv
+.env
+*.code-workspace
+__pycache__
+.files/*

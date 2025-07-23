@@ -1,0 +1,106 @@
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/public/fonts/Aeonik-Regular.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/public/fonts/Aeonik-Medium.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/public/fonts/Aeonik-SemiBold.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/public/fonts/Aeonik-Bold.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 700;
+}
+
+body {
+  font-family: 'Aeonik', sans-serif !important;
+  position: relative;
+  background-color: #01213A !important;
+  min-height: 100vh;
+}
+
+/* Add gradient as a pseudo-element for better cross-browser compatibility */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("/public/gradient.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Add a subtle overlay to tone down the background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 7, 23, 0.75); /* Dark overlay to make background more subtle */
+  pointer-events: none; /* Allow clicks to pass through */
+  z-index: -1;
+}
+
+#theme-toggle {
+  display: none;
+}
+
+.disclaimer-notice {
+  padding: 15px;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.disclaimer-notice-watermark {
+  padding: 4px !important;
+  font-size: 12px;
+}
+
+#message-composer {
+  background-color: #01213A !important;
+  border: 1px solid #012B4B !important;
+}
+
+#starters button {
+  height: 64px !important;
+  font-weight: 700 !important;
+  background-color: #0D1C30 !important;
+  border: 1px solid #122844 !important;
+}
+
+#starters button:hover {
+  background-color: #0A1524 !important;
+}
+
+#starters button > div {
+  align-items: center !important;
+}
+
+#starters button img {
+  height: 32px !important;
+  width: 32px !important;
+}
+

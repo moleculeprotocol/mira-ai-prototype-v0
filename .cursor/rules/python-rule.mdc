@@ -1,0 +1,7 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+* Always prepend python commands with "source .venv/bin/activate"
+* Always prefer "python" and "pip" commands over "python3" or "pip3"
