@@ -2,7 +2,7 @@
 
 ## AI-Powered Knowledge Assistant for DeSci & Molecule
 
-MIRA (Molecule Information & Research Assistant) is an experimental prototype that demonstrates how modern AI can intelligently provide accurate information about decentralized science (DeSci) and Molecule's ecosystem.
+MIRA (Molecule Insights Research Assistant) is an experimental prototype that demonstrates how modern AI can intelligently provide accurate information about decentralized science (DeSci) and Molecule's ecosystem.
 
 ## 🎯 What is MIRA?
 
