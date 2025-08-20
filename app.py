@@ -8,7 +8,7 @@ from lib.rag import RAG
 
 rag = RAG()
 
-knowledge_version = "knowledge-2025-08-19"
+knowledge_version = rag.get_knowledge_version()
 
 client = AsyncOpenAI()
 

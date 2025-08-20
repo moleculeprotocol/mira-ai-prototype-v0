@@ -1,8 +1,7 @@
 python-dotenv
 openai~=1.93
 pydantic
-lancedb
-tantivy
+lancedb==0.24.3
 pylance
 langfuse~=3.1
 chainlit==2.5.5

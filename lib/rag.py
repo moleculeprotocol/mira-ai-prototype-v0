@@ -1,3 +1,5 @@
+import os
+
 import lancedb
 from lancedb.rerankers import RRFReranker
 from langfuse import Langfuse, observe
@@ -6,8 +8,17 @@ from langfuse.openai import OpenAI
 
 class RAG:
     def __init__(self, model="gpt-4o", temperature=0.6):
-        self.db = lancedb.connect("db")
+        self.db = lancedb.connect(
+            "s3://mol-mira-v0",
+            storage_options={
+                "aws_access_key_id": os.getenv("DO_SPACES_ACCESS_KEY_ID"),
+                "aws_secret_access_key": os.getenv("DO_SPACES_SECRET_ACCESS_KEY"),
+                "aws_endpoint": "https://fra1.digitaloceanspaces.com",
+                "aws_region": "fra1",
+            },
+        )
         self.table = self.db.open_table("molrag")
+        self.config_table = self.db.open_table("config")
         self.reranker = RRFReranker()
         self.client_settings = {
             "model": model,
@@ -18,6 +29,15 @@ class RAG:
         self.langfuse_prompt = self.langfuse.get_prompt("Simple Q&A prompt")
 
         # self.table.create_fts_index("text", replace=True)
+
+    def get_knowledge_version(self):
+        knowledge_version_result = (
+            self.config_table.search().where("key = 'knowledge_version'").to_pandas()
+        )
+        if not knowledge_version_result.empty:
+            return "knowledge-" + knowledge_version_result.iloc[0]["value"]
+        else:
+            return "N/A (Error)"
 
     @observe()
     def get_context(self, query: str, num_results: int = 8):
