@@ -8,8 +8,6 @@ from lib.rag import RAG
 
 rag = RAG()
 
-knowledge_version = rag.get_knowledge_version()
-
 client = AsyncOpenAI()
 
 langfuse = Langfuse(blocked_instrumentation_scopes=["chainlit"])
@@ -90,6 +88,10 @@ def start_chat():
     )
     cl.user_session.set("feedback_actions", {})  # Initialize feedback actions storage
 
+    # Get current knowledge version for this session
+    knowledge_version = rag.get_knowledge_version()
+    cl.user_session.set("knowledge_version", knowledge_version)
+
 
 @cl.on_message
 @observe()
@@ -97,6 +99,9 @@ async def handle_message(message: cl.Message):
     # Show thinking indicator
     thinking_msg = cl.Message(content="🤔 Thinking...")
     await thinking_msg.send()
+
+    # Get session-specific knowledge version
+    knowledge_version = cl.user_session.get("knowledge_version")
 
     langfuse.update_current_trace(
         input=message.content,
